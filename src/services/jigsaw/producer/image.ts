@@ -10,10 +10,10 @@ import {
 } from "./edge.ts";
 
 async function loadImage(w: number, h: number): Promise<ImageData> {
-  const image = await Jimp.read('src/assets/Gradient_builder_2.png');
+  const image = await Jimp.read('src/assets/alps-wonderful-region.png');
 
   // Resize the image to fit the canvas
-  let ratio = Math.min(0.6 * w / image.width, 0.6 * h / image.height);
+  let ratio = Math.min(0.7 * w / image.width, 0.7 * h / image.height);
   if (ratio > 1) {
     ratio = 1;
   }
@@ -105,19 +105,21 @@ function makePiece(
   rows: number,
   cols: number
 ): Piece[] {
-  // TODO: optimize the piece placement algorithm
   const pw = Math.floor(width / cols);
   const ph = Math.floor(height / rows);
-  const marginRatio = 1.6;
-  const areaMarginH = Math.floor(((canvasWidth + pw * (marginRatio - 1)) % (pw * marginRatio)) / 2);
-  const areaMarginV = Math.floor(((canvasHeight + ph * (marginRatio - 1)) % (ph * marginRatio)) / 2);
+  const areaMarginH = 40;
+  const areaMarginV = 40;
 
-  const piecesPerCol = Math.ceil((canvasHeight - areaMarginV * 2 + (pw * (marginRatio - 1))) / (ph * marginRatio));
-  const seg: Piece[] = pieces.map((piece, index) => {
-    // Calculate the position of each piece
+  const forbiddenAreaBeginX = Math.floor((canvasWidth - width) / 2);
 
-    const x = Math.floor(index / piecesPerCol) * pw * marginRatio + areaMarginH;
-    const y = (index % piecesPerCol) * ph * marginRatio + areaMarginV;
+  const seg: Piece[] = pieces.map((piece) => {
+    const side = Math.round(Math.random());
+    let x = areaMarginH + Math.floor(Math.random() * (forbiddenAreaBeginX - areaMarginH - pw * 1.2));
+    const y = areaMarginV + Math.floor(Math.random() * (canvasHeight - areaMarginV * 2 - ph));
+
+    if(side === 1) {
+      x = (canvasWidth - x - pw);
+    }
 
     return {
       x: x,

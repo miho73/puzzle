@@ -48,22 +48,22 @@ function Jigsaw() {
     window.addEventListener('mousedown', (event) => onMouseDown(event));
     window.addEventListener('mousemove', (event) => onMouseMove(event));
     window.addEventListener('mouseup', (event) => onMouseMove(event));
-    window.addEventListener('mouseleave', () => onMouseUp());
+    window.addEventListener('mouseleave', (event) => onMouseUp(event));
     window.addEventListener('pointerdown', (event) => onMouseDown(event));
     window.addEventListener('pointermove', (event) => onMouseMove(event));
-    window.addEventListener('pointerup', () => onMouseUp());
-    window.addEventListener('pointerleave', () => onMouseUp());
+    window.addEventListener('pointerup', (event) => onMouseUp(event));
+    window.addEventListener('pointerleave', (event) => onMouseUp(event));
 
     return () => {
       window.removeEventListener('resize', () => onResize(canvas));
       window.removeEventListener('mousedown', (event) => onMouseDown(event));
       window.removeEventListener('mousemove', (event) => onMouseMove(event));
       window.removeEventListener('mouseup', (event) => onMouseMove(event));
-      window.removeEventListener('mouseleave', () => onMouseUp());
+      window.removeEventListener('mouseleave', (event) => onMouseUp(event));
       window.removeEventListener('pointerdown', (event) => onMouseDown(event));
       window.removeEventListener('pointermove', (event) => onMouseMove(event));
-      window.removeEventListener('pointerup', () => onMouseUp());
-      window.removeEventListener('pointerleave', () => onMouseUp());
+      window.removeEventListener('pointerup', (event) => onMouseUp(event));
+      window.removeEventListener('pointerleave', (event) => onMouseUp(event));
     }
   }, [ctxRef]);
 
