@@ -1,9 +1,13 @@
 import {
-  completeSelection,
-  render,
   reportMousePosition,
-  reportMouseSelection, reportMouseUp, updateSelection
-} from "./coreJigsaw.ts";
+  reportMouseSelection,
+  reportMouseUp
+} from "./mouseEventContoller.ts";
+import {
+  completeSelection,
+  updateSelection
+} from "./selectionController.ts";
+import render from "../render.ts";
 
 const dpr = window.devicePixelRatio || 1;
 let trackingMouse = false;

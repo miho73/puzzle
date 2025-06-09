@@ -1,11 +1,13 @@
 import {useEffect, useRef} from "react";
 import {
   onMouseDown,
-  onMouseMove, onMouseUp,
+  onMouseMove,
+  onMouseUp,
   onResize
-} from "../../services/jigsaw/canvasController.ts";
+} from "../../services/jigsaw/controller/canvasController.ts";
 import {
-  beginPuzzle, setCanvasContext
+  beginPuzzle,
+  setCanvasContext
 } from "../../services/jigsaw/coreJigsaw.ts";
 
 function Jigsaw() {

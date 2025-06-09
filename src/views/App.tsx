@@ -4,7 +4,7 @@ import Jigsaw from "./jigsaw/main.tsx";
 function App() {
   return (
     <BrowserRouter>
-      <main className={'h-screen w-screen bg-[url(src/assets/blue_fabric.jpg)] bg-auto bg-center'}>
+      <main className={'h-screen w-screen bg-[url(src/assets/wood_dark.jpg)] bg-auto bg-center'}>
         <Routes>
           <Route path={'/puzzle'} element={<Jigsaw/>}/>
         </Routes>
