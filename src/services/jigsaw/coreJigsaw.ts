@@ -7,7 +7,7 @@ import {
   setPictureSize,
   setPieceSize
 } from "./globalVariables.ts";
-import {loadImage, makePiece, splitImage} from "./puzzleProducer/image.ts";
+import {loadImage, makePiece, splitImage} from "./puzzleProducer/imageProcessors.ts";
 
 
 function setCanvasContext(

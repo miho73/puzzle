@@ -1,5 +1,5 @@
 import {Jimp} from 'jimp';
-import type {Piece} from "../globalVariables.ts";
+import {canvasW, type Piece} from "../globalVariables.ts";
 import {
   flipX,
   flipY,
@@ -7,7 +7,7 @@ import {
   reflect,
   reverse,
   translate
-} from "./edge.ts";
+} from "./edgeProducers.ts";
 
 async function loadImage(w: number, h: number, scaleRatio: number = 0.7): Promise<ImageData> {
   const image = await Jimp.read('src/assets/alps-wonderful-region.png');
@@ -110,16 +110,23 @@ function makePiece(
   const areaMarginH = 40;
   const areaMarginV = 40;
 
-  const forbiddenAreaBeginX = Math.floor((canvasWidth - width) / 2);
-
   const seg: Piece[] = pieces.map((piece) => {
-    const side = Math.round(Math.random());
-    let x = areaMarginH + Math.floor(Math.random() * (forbiddenAreaBeginX - areaMarginH - pw * 1.2));
-    const y = areaMarginV + Math.floor(Math.random() * (canvasHeight - areaMarginV * 2 - ph));
+    // define initial position for each piece
 
-    if(side === 1) {
-      x = (canvasWidth - x - pw);
-    }
+    let x = 0, y = 0;
+
+    const answerAreaBeginX = Math.floor(canvasWidth - width) / 2 - pw;
+    const answerAreaEndX = answerAreaBeginX + width + pw;
+    const answerAreaBeginY = Math.floor(canvasHeight - height) / 2 - ph;
+    const answerAreaEndY = answerAreaBeginY + height + ph;
+
+    do {
+      x = Math.floor(Math.random() * (canvasWidth - pw - areaMarginH * 2)) + areaMarginH;
+      y = Math.floor(Math.random() * (canvasHeight - ph - areaMarginV * 2)) + areaMarginV;
+    } while (
+      x > answerAreaBeginX && x < answerAreaEndX &&
+      y > answerAreaBeginY && y < answerAreaEndY
+    );
 
     return {
       x: x,

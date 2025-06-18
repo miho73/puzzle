@@ -1,6 +1,6 @@
 import * as Var from "./globalVariables.ts";
 import {pieces} from "./globalVariables.ts";
-import {translate} from "./puzzleProducer/edge.ts";
+import {translate} from "./puzzleProducer/edgeProducers.ts";
 
 function render() {
   // clear canvas
