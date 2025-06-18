@@ -49,8 +49,8 @@ function reportMousePosition(
   dx: number, dy: number,
 ) {
   for (let i = 0; i <= Var.selectedLength; i++) {
-    pieces[i].x += dx;
-    pieces[i].y += dy;
+    if(pieces[i].x + dx >= 0 && pieces[i].x + Var.pw + dx <= Var.canvasW) pieces[i].x += dx;
+    if(pieces[i].y + dy >= 0 && pieces[i].y + Var.ph + dy <= Var.canvasH) pieces[i].y += dy;
   }
 
   render();
