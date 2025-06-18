@@ -24,7 +24,7 @@ async function beginPuzzle() {
   Var.setPiecesCount(10, 20);
 
   // load image
-  const imageData = await loadImage(Var.canvasW, Var.canvasH);
+  const imageData = await loadImage(Var.canvasW, Var.canvasH, 0.6);
   if (!imageData) {
     throw new Error('Failed to load image');
   }

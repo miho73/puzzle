@@ -78,4 +78,4 @@ export {
   setSelectedLength,
 }
 
-export type PieceType = Piece;
+export type {Piece};

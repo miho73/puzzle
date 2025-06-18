@@ -1,5 +1,5 @@
 import {Jimp} from 'jimp';
-import type {Piece} from "../coreJigsaw.ts";
+import type {Piece} from "../globalVariables.ts";
 import {
   flipX,
   flipY,
@@ -9,11 +9,11 @@ import {
   translate
 } from "./edge.ts";
 
-async function loadImage(w: number, h: number): Promise<ImageData> {
+async function loadImage(w: number, h: number, scaleRatio: number = 0.7): Promise<ImageData> {
   const image = await Jimp.read('src/assets/alps-wonderful-region.png');
 
   // Resize the image to fit the canvas
-  let ratio = Math.min(0.7 * w / image.width, 0.7 * h / image.height);
+  let ratio = Math.min(scaleRatio * w / image.width, scaleRatio * h / image.height);
   if (ratio > 1) {
     ratio = 1;
   }
