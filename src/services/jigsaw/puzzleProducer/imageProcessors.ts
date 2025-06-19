@@ -1,5 +1,5 @@
 import {Jimp} from 'jimp';
-import {canvasW, type Piece} from "../globalVariables.ts";
+import type {Piece} from "../globalVariables.ts";
 import {
   flipX,
   flipY,
@@ -10,7 +10,7 @@ import {
 } from "./edgeProducers.ts";
 
 async function loadImage(w: number, h: number, scaleRatio: number = 0.7): Promise<ImageData> {
-  const image = await Jimp.read('src/assets/alps-wonderful-region.png');
+  const image = await Jimp.read('src/assets/1391577.jpg');
 
   // Resize the image to fit the canvas
   let ratio = Math.min(scaleRatio * w / image.width, scaleRatio * h / image.height);

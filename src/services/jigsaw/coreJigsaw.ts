@@ -21,7 +21,7 @@ function setCanvasContext(
 
 async function beginPuzzle() {
   Var.setCanvasSize(window.innerWidth, window.innerHeight);
-  Var.setPiecesCount(10, 20);
+  Var.setPiecesCount(13, 19);
 
   // load image
   const imageData = await loadImage(Var.canvasW, Var.canvasH, 0.6);
