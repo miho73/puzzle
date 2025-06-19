@@ -23,6 +23,10 @@ async function beginPuzzle() {
   Var.setCanvasSize(window.innerWidth, window.innerHeight);
   Var.setPiecesCount(13, 19);
 
+  // reset pieces
+  Var.pieces.length = 0;
+  Var.piecePaths.length = 0;
+
   // load image
   const imageData = await loadImage(Var.canvasW, Var.canvasH, 0.6);
   if (!imageData) {

@@ -3,7 +3,7 @@ import {
   onMouseDown,
   onMouseMove,
   onMouseUp,
-  onResize
+  onResize, onTouchEnd, onTouchMove, onTouchStart
 } from "../../services/jigsaw/controller/canvasController.ts";
 import {
   beginPuzzle,
@@ -49,23 +49,23 @@ function Jigsaw() {
     window.addEventListener('resize', () => onResize(canvas));
     window.addEventListener('mousedown', (event) => onMouseDown(event));
     window.addEventListener('mousemove', (event) => onMouseMove(event));
-    window.addEventListener('mouseup', (event) => onMouseMove(event));
+    window.addEventListener('mouseup', (event) => onMouseUp(event));
     window.addEventListener('mouseleave', (event) => onMouseUp(event));
-    window.addEventListener('pointerdown', (event) => onMouseDown(event));
-    window.addEventListener('pointermove', (event) => onMouseMove(event));
-    window.addEventListener('pointerup', (event) => onMouseUp(event));
-    window.addEventListener('pointerleave', (event) => onMouseUp(event));
+    window.addEventListener('touchstart', (event) => onTouchStart(event));
+    window.addEventListener('touchmove', (event) => onTouchMove(event));
+    window.addEventListener('touchmove', (event) => event.preventDefault(), {passive: false});
+    window.addEventListener('touchend', (event) => onTouchEnd(event));
 
     return () => {
       window.removeEventListener('resize', () => onResize(canvas));
       window.removeEventListener('mousedown', (event) => onMouseDown(event));
       window.removeEventListener('mousemove', (event) => onMouseMove(event));
-      window.removeEventListener('mouseup', (event) => onMouseMove(event));
+      window.removeEventListener('mouseup', (event) => onMouseUp(event));
       window.removeEventListener('mouseleave', (event) => onMouseUp(event));
-      window.removeEventListener('pointerdown', (event) => onMouseDown(event));
-      window.removeEventListener('pointermove', (event) => onMouseMove(event));
-      window.removeEventListener('pointerup', (event) => onMouseUp(event));
-      window.removeEventListener('pointerleave', (event) => onMouseUp(event));
+      window.removeEventListener('touchstart', (event) => onTouchStart(event));
+      window.removeEventListener('touchmove', (event) => onTouchMove(event));
+      window.removeEventListener('touchmove', (event) => event.preventDefault());
+      window.removeEventListener('touchend', (event) => onTouchEnd(event));
     }
   }, [ctxRef]);
 
