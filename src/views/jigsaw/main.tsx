@@ -1,9 +1,10 @@
 import {useEffect, useRef} from "react";
 import {
+  keyDownTranslation,
   onMouseDown,
   onMouseMove,
   onMouseUp,
-  onResize, onTouchEnd, onTouchMove, onTouchStart
+  onResize, onTouchEnd, onTouchMove, onTouchStart, onWheel
 } from "../../services/jigsaw/controller/canvasController.ts";
 import {
   beginPuzzle,
@@ -55,6 +56,8 @@ function Jigsaw() {
     window.addEventListener('touchmove', (event) => onTouchMove(event));
     window.addEventListener('touchmove', (event) => event.preventDefault(), {passive: false});
     window.addEventListener('touchend', (event) => onTouchEnd(event));
+    window.addEventListener('wheel', (event) => onWheel(event));
+    window.addEventListener('keydown', (event) => keyDownTranslation(event));
 
     return () => {
       window.removeEventListener('resize', () => onResize(canvas));
@@ -66,6 +69,8 @@ function Jigsaw() {
       window.removeEventListener('touchmove', (event) => onTouchMove(event));
       window.removeEventListener('touchmove', (event) => event.preventDefault());
       window.removeEventListener('touchend', (event) => onTouchEnd(event));
+      window.removeEventListener('wheel', (event) => onWheel(event));
+      window.removeEventListener('keydown', (event) => keyDownTranslation(event));
     }
   }, [ctxRef]);
 
