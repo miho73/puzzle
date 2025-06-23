@@ -65,6 +65,10 @@ function setScale(
   scale_: number,
 ) {
   scale = scale_;
+  if(dx < canvasW * (1 - scale) / 2) dx = canvasW * (1 - scale) / 2;
+  else if(dx > canvasW * (scale - 1) / 2) dx = canvasW * (scale - 1) / 2;
+  if(dy < canvasH * (1 - scale) / 2) dy = canvasH * (1 - scale) / 2;
+  else if(dy > canvasH * (scale - 1) / 2) dy = canvasH * (scale - 1) / 2;
 }
 
 function setTranslation(

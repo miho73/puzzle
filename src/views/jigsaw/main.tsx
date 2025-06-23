@@ -57,6 +57,7 @@ function Jigsaw() {
     window.addEventListener('touchmove', (event) => event.preventDefault(), {passive: false});
     window.addEventListener('touchend', (event) => onTouchEnd(event));
     window.addEventListener('wheel', (event) => onWheel(event));
+    window.addEventListener('wheel', (event) => event.preventDefault(), {passive: false});
     window.addEventListener('keydown', (event) => keyDownTranslation(event));
 
     return () => {
@@ -70,6 +71,7 @@ function Jigsaw() {
       window.removeEventListener('touchmove', (event) => event.preventDefault());
       window.removeEventListener('touchend', (event) => onTouchEnd(event));
       window.removeEventListener('wheel', (event) => onWheel(event));
+      window.removeEventListener('wheel', (event) => event.preventDefault());
       window.removeEventListener('keydown', (event) => keyDownTranslation(event));
     }
   }, [ctxRef]);

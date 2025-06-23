@@ -194,30 +194,33 @@ function onWheel(
 ) {
   event.preventDefault();
 
-  let delta = 0;
+  let deltaY = 0;
+  let deltaX = 0;
 
   switch (event.deltaMode) {
     case WheelEvent.DOM_DELTA_PIXEL:
-      delta = event.deltaY;
+      deltaY = event.deltaY;
+      deltaX = event.deltaX;
       break;
     case WheelEvent.DOM_DELTA_LINE:
-      delta = event.deltaY * 16;
+      deltaY = event.deltaY * 16;
+      deltaX = event.deltaX * 16;
       break;
     case WheelEvent.DOM_DELTA_PAGE:
-      delta = event.deltaY * window.innerHeight;
+      deltaY = event.deltaY * window.innerHeight;
+      deltaX = event.deltaX * window.innerWidth;
       break;
     default:
       console.warn('Unknown delta mode:', event.deltaMode);
       return;
   }
 
-  setScale(Math.max(scale * (delta * 0.0005 + 1), 1));
-  setDy(dy);
-  setDx(dx);
+  setDy(dy - deltaY * 0.0005 * Var.canvasW);
+  setDx(dx - deltaX * 0.0005 * Var.canvasW);
 
   Var.ctx.setTransform(
     scale, 0, 0, scale, Var.canvasW*0.5*(1-scale)+dx, Var.canvasH*0.5*(1-scale)+dy
-  )
+  );
 
   render();
 }
@@ -233,6 +236,10 @@ function keyDownTranslation(
     setDx(dx + 100 / scale);
   } else if(event.key === 'ArrowRight' || event.key === 'd') {
     setDx(dx - 100 / scale);
+  } else if(event.key === '=') {
+    setScale(Math.max(scale * 1.005, 1));
+  } else if(event.key === '-') {
+    setScale(Math.max(scale * 0.995, 1));
   } else {
     return;
   }
@@ -242,7 +249,7 @@ function keyDownTranslation(
   );
 
   render();
-  }
+}
 
 
 export {
