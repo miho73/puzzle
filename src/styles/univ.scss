@@ -1,1 +1,36 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Noto+Serif+KR:wght@200..900&display=swap');
+
+@theme {
+  --color-beige-100: #E0D8C2;
+  --color-beige-200: #D4CCB2;
+  --color-beige-300: #C2B79A;
+  --color-beige-400: #ABA07E;
+  --color-beige-500: #5E5431;
+  --color-beige-600: #52472B;
+  --color-beige-700: #524730;
+}
+
+* {
+  font-family: "Noto Serif KR", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.monsieur-la-doulaise-regular {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+p {
+  color: var(--color-beige-700);
+}
+
+svg {
+  & path {
+    fill: inherit !important;
+    stroke: inherit !important;
+  }
+}
