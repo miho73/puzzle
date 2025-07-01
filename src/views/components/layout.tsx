@@ -1,19 +1,31 @@
 import type {ReactElement, ReactNode} from "react";
-import {RoyalG56} from "../../assets/royal/Svg.tsx";
+import {RoyalG53, RoyalG56} from "../../assets/royal/Svg.tsx";
 
 function Divider(
   {
-    className
+    className,
+    variant
   }: {
-    className?: string
+    className?: string,
+    variant?: 'g56' | 'g53'
   }
 ) {
+  let svg: ReactElement;
+
+  switch (variant) {
+    case 'g53':
+      svg = <RoyalG53 className={'fill-beige-500 mx-auto min-w-[200px] w-3/4 sm:w-1/2'}/>;
+      break;
+    default:
+      svg = <RoyalG56 className={'fill-beige-500 mx-auto min-w-[200px] w-3/4 sm:w-1/2'}/>;
+  }
+
   return (
     <div className={
       'my-5' +
       (className ? ' ' + className : '')
     }>
-      <RoyalG56 width={'70%'} className={'fill-beige-500 mx-auto'}/>
+      {svg}
     </div>
   )
 }
@@ -40,7 +52,22 @@ function Stack(
   );
 }
 
+function Center(
+  {
+    children
+  }: {
+    children: ReactNode
+  }
+) {
+  return (
+    <div className={'w-screen h-screen flex items-center justify-center flex-col'}>
+      {children}
+    </div>
+  )
+}
+
 export {
   Stack,
-  Divider
+  Divider,
+  Center
 }

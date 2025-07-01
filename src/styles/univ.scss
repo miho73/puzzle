@@ -28,6 +28,10 @@ p {
   color: var(--color-beige-700);
 }
 
+button {
+  cursor: pointer;
+}
+
 svg {
   & path {
     fill: inherit !important;
