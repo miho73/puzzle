@@ -1,5 +1,4 @@
 import type {ReactElement, ReactNode} from "react";
-import {GoldEdgeCover} from "./GoldEdgeCover.tsx";
 import {Link} from "react-router-dom";
 import {Stack} from "./layout.tsx";
 
@@ -9,7 +8,7 @@ interface ButtonInterface {
   className?: string;
 }
 
-function GoldEdgeButton(
+function EmeraldButton(
   {
     onClick,
     children,
@@ -17,19 +16,23 @@ function GoldEdgeButton(
   }: ButtonInterface
 ): ReactElement {
   return (
-    <button onClick={onClick}>
-      <GoldEdgeCover>
-        <p className={
-          'px-2 py-1 ' +
-          'bg-gradient-to-br from-green-300 to-green-500' +
-          ( className ? ' ' + className : '')
-        }>{children}</p>
-      </GoldEdgeCover>
+    <button
+      className={
+        'border-none rounded-lg overflow-hidden px-2 py-1 ' +
+        'bg-gradient-to-br from-emerald-300 to-emerald-500 ' +
+        'transition transform-gpu duration-200 ease-in-out ' +
+        'hover:from-emerald-200 hover:to-emerald-400 focus:from-emerald-200 focus:to-emerald-400 focus:scale-105 ' +
+        'outline-none' +
+        ( className ? ' ' + className : '')
+      }
+      onClick={onClick}
+    >
+      {children}
     </button>
   );
 }
 
-function GoldEdgeLink(
+function EmeraldLink(
   {
     to,
     children,
@@ -41,15 +44,18 @@ function GoldEdgeLink(
   }
 ): ReactElement {
   return (
-    <Link to={to}>
-      <GoldEdgeCover>
-        <p className={
-          'px-2 py-1 ' +
-          'bg-gradient-to-br from-green-300 to-green-500 ' +
-          'text-center' +
-          ( className ? ' ' + className : '')
-        }>{children}</p>
-      </GoldEdgeCover>
+    <Link
+      to={to}
+      className={
+        'border-none rounded-lg overflow-hidden px-2 py-1 text-center ' +
+        'bg-gradient-to-br from-emerald-300 to-emerald-500 ' +
+        'transition transform-gpu duration-200 ease-in-out ' +
+        'hover:from-emerald-200 hover:to-emerald-400 focus:from-emerald-200 focus:to-emerald-400 focus:scale-105 ' +
+        'outline-none' +
+        ( className ? ' ' + className : '')
+      }
+    >
+      {children}
     </Link>
   );
 }
@@ -81,7 +87,7 @@ function IconButton(
 }
 
 export {
-  GoldEdgeButton,
-  GoldEdgeLink,
+  EmeraldButton,
+  EmeraldLink,
   IconButton
 }

@@ -1,5 +1,5 @@
 import {GoldEdgeCard} from "../components/GoldEdgeCover.tsx";
-import {GoldEdgeButton, GoldEdgeLink} from "../components/Buttons.tsx";
+import {EmeraldButton, EmeraldLink} from "../components/Buttons.tsx";
 import {Divider, Stack, Center} from "../components/layout.tsx";
 
 function Index() {
@@ -9,25 +9,25 @@ function Index() {
         <p className={'text-center font-bold text-5xl monsieur-la-doulaise-regular'}>Puzzlit</p>
         <Divider/>
 
-        <Stack className={'gap-2.5 mt-3'}>
-          <GoldEdgeButton
+        <Stack className={'gap-3 mt-3'}>
+          <EmeraldButton
             className={'text-lg'}
           >
             퍼즐 플레이
-          </GoldEdgeButton>
+          </EmeraldButton>
 
-          <GoldEdgeButton
+          <EmeraldButton
             className={'text-lg'}
           >
             플레이 기록
-          </GoldEdgeButton>
+          </EmeraldButton>
 
-          <GoldEdgeLink
+          <EmeraldLink
             to={'/settings'}
             className={'text-lg'}
           >
             설정
-          </GoldEdgeLink>
+          </EmeraldLink>
         </Stack>
       </GoldEdgeCard>
     </Center>
