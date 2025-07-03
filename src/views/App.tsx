@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Jigsaw from "./jigsaw/main.tsx";
-import JigsawSetup from "../services/jigsaw_setup/main.tsx";
+import JigsawSetup from "./jigsaw/setup/setup.tsx";
 import Index from "./index";
 import Settings from "./settings/settings.tsx";
 

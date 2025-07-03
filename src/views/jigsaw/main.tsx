@@ -77,9 +77,7 @@ function Jigsaw() {
   }, [ctxRef]);
 
   return (
-    <>
-      <canvas ref={canvasRef} className={'w-screen h-screen'}/>
-    </>
+    <canvas ref={canvasRef} className={'w-screen h-screen'}/>
   );
 }
 

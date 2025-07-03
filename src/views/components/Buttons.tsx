@@ -17,11 +17,12 @@ function EmeraldButton(
 ): ReactElement {
   return (
     <button
+
       className={
-        'border-none rounded-lg overflow-hidden px-2 py-1 ' +
+        'border-none rounded-lg overflow-hidden px-4 py-2 ' +
         'bg-gradient-to-br from-emerald-300 to-emerald-500 ' +
-        'transition transform-gpu duration-200 ease-in-out ' +
-        'hover:from-emerald-200 hover:to-emerald-400 focus:from-emerald-200 focus:to-emerald-400 focus:scale-105 ' +
+        'transition duration-200 ease-in-out ' +
+        'hover:from-emerald-200 hover:to-emerald-400 focus:from-emerald-200 focus:to-emerald-400 ' +
         'outline-none' +
         ( className ? ' ' + className : '')
       }
@@ -47,7 +48,7 @@ function EmeraldLink(
     <Link
       to={to}
       className={
-        'border-none rounded-lg overflow-hidden px-2 py-1 text-center ' +
+        'border-none rounded-lg overflow-hidden px-4 py-2 text-center ' +
         'bg-gradient-to-br from-emerald-300 to-emerald-500 ' +
         'transition transform-gpu duration-200 ease-in-out ' +
         'hover:from-emerald-200 hover:to-emerald-400 focus:from-emerald-200 focus:to-emerald-400 focus:scale-105 ' +

@@ -10,11 +10,12 @@ function Index() {
         <Divider/>
 
         <Stack className={'gap-3 mt-3'}>
-          <EmeraldButton
+          <EmeraldLink
+            to={'/puzzle/setup'}
             className={'text-lg'}
           >
             퍼즐 플레이
-          </EmeraldButton>
+          </EmeraldLink>
 
           <EmeraldButton
             className={'text-lg'}
