@@ -10,11 +10,16 @@ import {
   beginPuzzle,
   setCanvasContext
 } from "../../services/jigsaw/coreJigsaw.ts";
+import {useAppSelector} from "../../services/redux/hooks.ts";
 
 function Jigsaw() {
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+
+  const rows = useAppSelector(state => state.puzzle.verticalPieces);
+  const cols = useAppSelector(state => state.puzzle.horizontalPieces);
+  const imageData = useAppSelector(state => state.puzzle.imageData);
 
   // Overall initialization
   useEffect(() => {
@@ -32,7 +37,11 @@ function Jigsaw() {
     canvas.height = window.innerHeight * dpr;
 
     // prepare puzzle and start
-    beginPuzzle()
+    beginPuzzle(
+      rows || 0,
+      cols || 0,
+      imageData || null
+    )
       .then(() => {
         if(!ctxRef.current) throw new Error('Canvas content was not initialized');
         setCanvasContext(ctxRef.current);

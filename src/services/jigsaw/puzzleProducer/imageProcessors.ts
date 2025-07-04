@@ -9,8 +9,17 @@ import {
   translate
 } from "./edgeProducers.ts";
 
-async function loadImage(w: number, h: number, scaleRatio: number = 0.7): Promise<ImageData> {
-  const image = await Jimp.read('src/assets/1391577.jpg');
+async function loadImage(
+  imageData: ArrayBuffer | null,
+  w: number,
+  h: number,
+  scaleRatio: number = 0.7
+): Promise<ImageData> {
+  if(!imageData) {
+    throw new Error('No image data provided');
+  }
+
+  const image = await Jimp.fromBuffer(imageData);
 
   // Resize the image to fit the canvas
   let ratio = Math.min(scaleRatio * w / image.width, scaleRatio * h / image.height);

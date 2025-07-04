@@ -3,10 +3,22 @@ import{
 } from "../../components/GoldEdgeCover.tsx";
 import {Center, Divider, Stack} from "../../components/layout.tsx";
 import SetupSelectImage from "./SelectImage.tsx";
-import {useState} from "react";
+import {type ReactElement, useState} from "react";
+import ConfigureJigsaw from "./ConfigureJigsaw.tsx";
+import StartPuzzle from "./Start.tsx";
 
 function JigsawSetup() {
   const [stage, setStage] = useState<number>(0);
+
+  const [image, setImage] = useState<ArrayBuffer | null>(null);
+  const [imageWidth, setImageWidth] = useState<number>(0);
+  const [imageHeight, setImageHeight] = useState<number>(0);
+  const [imageUrl, setImageUrl] = useState<string>('');
+
+  const [cols, setCols] = useState<number>(0);
+  const [rows, setVertical] = useState<number>(0);
+  const [sCols, setSCols] = useState('');
+  const [sRows, setSRows] = useState('');
 
   function nextStage() {
     if (stage < 2) {
@@ -19,21 +31,55 @@ function JigsawSetup() {
     }
   }
 
-  let title = '';
+  let title: string = '';
+  let content: ReactElement = <></>;
   switch (stage) {
     case 0:
       title = 'Pick your picture';
+      content = (
+        <SetupSelectImage
+          imageUrl={imageUrl}
+          setImage={setImage}
+          setImageUrl={setImageUrl}
+          setImageWidth={setImageWidth}
+          setImageHeight={setImageHeight}
+        />
+      );
       break;
     case 1:
       title = 'Configure the puzzle';
+      content = (
+        <ConfigureJigsaw
+          width={imageWidth}
+          height={imageHeight}
+          imageUrl={imageUrl}
+          cols={cols}
+          rows={rows}
+          setCols={setCols}
+          setRows={setVertical}
+          sCols={sCols}
+          sRows={sRows}
+          setSCols={setSCols}
+          setSRows={setSRows}
+        />
+      );
       break;
     case 2:
       title = 'Start your puzzle';
+      content = (
+        <StartPuzzle
+          horizontalPieces={cols}
+          verticalPieces={rows}
+          imageData={image}
+        />
+      );
       break;
     default:
       title = 'Setup Jigsaw Puzzle';
       break;
   }
+
+
 
   return (
     <Center>
@@ -42,9 +88,12 @@ function JigsawSetup() {
 
         <Divider/>
 
-        <SetupSelectImage/>
+        {content}
 
-        <Stack direction={'row'} className={'justify-between my-3'}>
+        <Stack
+          direction={'row'}
+          className={'justify-between my-3 mx-auto w-5/6'}
+        >
           <button onClick={prevStage}>
             {stage === 0 ? '' : '< Prev'}
           </button>

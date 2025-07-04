@@ -39,12 +39,10 @@ function GoldEdgeCard(
   return (
     <GoldEdgeCover>
       <div className={
-        'px-10 pt-15 pb-20 rounded-[calc(var(--radius-xl)-6px)] ' +
+        'px-10 py-15 rounded-[calc(var(--radius-xl)-6px)] ' +
         'max-w-[90vw] md:max-w-[50vw] bg-beige-200 relative' +
         ( className ? ' ' + className : '')
       }>
-        {children}
-
         <RoyalC1
           className={'fill-beige-400 w-1/5 sm:w-1/6 absolute left-2 bottom-2'}
         />
@@ -57,6 +55,10 @@ function GoldEdgeCard(
         <RoyalC1
           className={'fill-beige-400 w-1/5 sm:w-1/6 absolute right-2 top-2 transform -scale-x-100 -scale-y-100'}
         />
+
+        <div className={'relative z-10'}>
+          {children}
+        </div>
       </div>
     </GoldEdgeCover>
   );
