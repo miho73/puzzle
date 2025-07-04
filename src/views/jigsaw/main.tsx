@@ -17,8 +17,8 @@ function Jigsaw() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
-  const rows = useAppSelector(state => state.puzzle.verticalPieces);
-  const cols = useAppSelector(state => state.puzzle.horizontalPieces);
+  const rows = useAppSelector(state => state.puzzle.rows);
+  const cols = useAppSelector(state => state.puzzle.cols);
   const imageUrl = useAppSelector(state => state.puzzle.imageUrl);
 
   // Overall initialization

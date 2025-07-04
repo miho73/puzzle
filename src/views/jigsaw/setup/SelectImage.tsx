@@ -69,7 +69,7 @@ function SetupSelectImage(
           className={'w-fit'}
           onClick={() => fileInputRef?.current?.click()}
         >
-          Select File
+          Choose Image
         </EmeraldButton>
       </Stack>
 

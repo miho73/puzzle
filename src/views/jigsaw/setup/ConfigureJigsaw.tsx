@@ -26,14 +26,14 @@ function ConfigureJigsaw(
 ) {
   const [a, b] = findSplit(width, height);
 
-  function setHorizontalPieces(val: string) {
+  function setPuzzleCols(val: string) {
     setSCols(val);
 
     const num = parseInt(val);
     if(isNaN(num) || num <= 0) return;
     setCols(num);
   }
-  function setVerticalPieces(val: string) {
+  function setPuzzleRows(val: string) {
     setSRows(val);
 
     const num = parseInt(val);
@@ -55,13 +55,13 @@ function ConfigureJigsaw(
           <Input
             type={'number'}
             value={sCols}
-            setter={setHorizontalPieces}
+            setter={setPuzzleCols}
           />
           <p>x</p>
           <Input
             type={'number'}
             value={sRows}
-            setter={setVerticalPieces}
+            setter={setPuzzleRows}
           />
         </Stack>
       </Stack>

@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 function StartPuzzle(
   {
-    horizontalPieces,
-    verticalPieces,
+    cols,
+    rows,
     imageUrl
   }: {
-    horizontalPieces?: number;
-    verticalPieces?: number;
+    cols?: number;
+    rows?: number;
     imageUrl?: string;
   }
 ) {
@@ -24,8 +24,8 @@ function StartPuzzle(
 
     dispatch(
       initializePuzzle({
-        horizontalPieces: horizontalPieces,
-        verticalPieces: verticalPieces,
+        cols: cols,
+        rows: rows,
         imageUrl: imageUrl
       })
     );
@@ -35,6 +35,7 @@ function StartPuzzle(
 
   return (
     <Stack className={'justify-center items-center gap-3'}>
+      <p>{(cols || 0) * (rows || 0)} pcs puzzle</p>
       <EmeraldButton
         className={'mx-auto'}
         onClick={startPuzzle}

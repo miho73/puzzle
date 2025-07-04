@@ -3,6 +3,7 @@ import {GoldEdgeCard} from "../components/GoldEdgeCover.tsx";
 import {RoyalG39} from "../../assets/royal/Svg.tsx";
 import {type ReactElement, useState} from "react";
 import Credit from "./credit.tsx";
+import {Link} from "react-router-dom";
 
 function Settings() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -72,7 +73,11 @@ function Settings() {
           >Credits</button>
         </Stack>
 
-
+        <Link
+          to={'/'}
+          className={'text-center mx-auto block mt-5'}
+          aria-label={'go back to the main menu'}
+        >&lt; Return to Home</Link>
       </GoldEdgeCard>
     </Center>
   );

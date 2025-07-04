@@ -6,6 +6,7 @@ import SetupSelectImage from "./SelectImage.tsx";
 import {type ReactElement, useState} from "react";
 import ConfigureJigsaw from "./ConfigureJigsaw.tsx";
 import StartPuzzle from "./Start.tsx";
+import {Link} from "react-router-dom";
 
 function JigsawSetup() {
   const [stage, setStage] = useState<number>(0);
@@ -66,8 +67,8 @@ function JigsawSetup() {
       title = 'Start your puzzle';
       content = (
         <StartPuzzle
-          horizontalPieces={cols}
-          verticalPieces={rows}
+          cols={cols}
+          rows={rows}
           imageUrl={imageUrl}
         />
       );
@@ -76,8 +77,6 @@ function JigsawSetup() {
       title = 'Setup Jigsaw Puzzle';
       break;
   }
-
-
 
   return (
     <Center>
@@ -92,9 +91,12 @@ function JigsawSetup() {
           direction={'row'}
           className={'justify-between my-3 mx-auto w-5/6'}
         >
-          <button onClick={prevStage}>
-            {stage === 0 ? '' : '< Prev'}
-          </button>
+          {stage === 0 ?
+            <Link to={'/'}>&lt; Home</Link> :
+            <button onClick={prevStage}>
+              &lt; Prev
+            </button>
+          }
           <button onClick={nextStage}>
             {stage === 2 ? 'Start' : 'Next >'}
           </button>
