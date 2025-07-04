@@ -5,6 +5,10 @@ const store = configureStore({
   reducer: {
     puzzle: puzzleReducers
   },
+  middleware: (gDM) =>
+    gDM({
+      serializableCheck: false
+    })
 });
 
 export default store;

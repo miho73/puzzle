@@ -20,9 +20,9 @@ function setCanvasContext(
 }
 
 async function beginPuzzle(
+  imageUrl: string,
   rows: number,
-  cols: number,
-  rawImageData: ArrayBuffer | null
+  cols: number
 ) {
   Var.setCanvasSize(window.innerWidth, window.innerHeight);
   Var.setPiecesCount(rows, cols);
@@ -32,7 +32,7 @@ async function beginPuzzle(
   Var.piecePaths.length = 0;
 
   // load image
-  const imageData = await loadImage(rawImageData, Var.canvasW, Var.canvasH, 0.6);
+  const imageData = await loadImage(imageUrl, Var.canvasW, Var.canvasH, 0.6);
   if (!imageData) {
     throw new Error('Failed to load image');
   }

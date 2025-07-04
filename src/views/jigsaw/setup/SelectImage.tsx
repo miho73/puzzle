@@ -5,13 +5,11 @@ import {useRef} from "react";
 function SetupSelectImage(
   {
     imageUrl,
-    setImage,
     setImageUrl,
     setImageWidth,
     setImageHeight
   } : {
     imageUrl: string;
-    setImage: (image: ArrayBuffer | null) => void;
     setImageUrl: (url: string) => void;
     setImageWidth: (width: number) => void;
     setImageHeight: (height: number) => void;
@@ -31,21 +29,13 @@ function SetupSelectImage(
 
       const url = URL.createObjectURL(event.target.files[0]);
       setImageUrl(url);
-      loadImage(event.target.files[0])
-        .then(img => setImage(img))
-        .catch(err => {
-          console.error(err);
-          setImage(null);
-        });
-      inferImageDimensions(url)
-        .then(dim => {
-          setImageWidth(dim.width);
-          setImageHeight(dim.height);
+      loadImage(url)
+        .then(img => {
+          setImageWidth(img.width);
+          setImageHeight(img.height);
         })
         .catch(err => {
-          console.error('Failed to infer image dimensions:', err);
-          setImageWidth(0);
-          setImageHeight(0);
+          console.error(err);
         });
     }
     else {
@@ -54,27 +44,13 @@ function SetupSelectImage(
     }
   }
 
-  function loadImage(file: File): Promise<ArrayBuffer> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result) resolve(e.target.result as ArrayBuffer);
-        else reject(new Error('Failed to read file'));
-      };
-      reader.onerror = reject;
-      reader.readAsArrayBuffer(file);
-    });
-  }
-
-  function inferImageDimensions(url: string): Promise<{ width: number; height: number }> {
+  function loadImage(url: string): Promise<{width: number, height: number}> {
     const img = new Image();
-    img.src = url;
 
     return new Promise((resolve, reject) => {
-      img.onload = () => {
-        resolve({ width: img.width, height: img.height });
-      };
+      img.onload = () => resolve({ width: img.width, height: img.height });
       img.onerror = reject;
+      img.src = url;
     });
   }
 

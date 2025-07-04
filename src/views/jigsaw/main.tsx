@@ -19,7 +19,7 @@ function Jigsaw() {
 
   const rows = useAppSelector(state => state.puzzle.verticalPieces);
   const cols = useAppSelector(state => state.puzzle.horizontalPieces);
-  const imageData = useAppSelector(state => state.puzzle.imageData);
+  const imageUrl = useAppSelector(state => state.puzzle.imageUrl);
 
   // Overall initialization
   useEffect(() => {
@@ -38,9 +38,9 @@ function Jigsaw() {
 
     // prepare puzzle and start
     beginPuzzle(
+      imageUrl || '',
       rows || 0,
-      cols || 0,
-      imageData || null
+      cols || 0
     )
       .then(() => {
         if(!ctxRef.current) throw new Error('Canvas content was not initialized');

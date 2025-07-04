@@ -114,7 +114,7 @@ export {
   setCanvas,
   setSelectedLength,
   setScale,
-  setTranslation, setDx, setDy
+  setTranslation, setDx, setDy,
 }
 
 export type {Piece};

@@ -8,11 +8,11 @@ function StartPuzzle(
   {
     horizontalPieces,
     verticalPieces,
-    imageData
+    imageUrl
   }: {
     horizontalPieces?: number;
     verticalPieces?: number;
-    imageData?: ArrayBuffer | null;
+    imageUrl?: string;
   }
 ) {
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ function StartPuzzle(
       initializePuzzle({
         horizontalPieces: horizontalPieces,
         verticalPieces: verticalPieces,
-        imageData: imageData
+        imageUrl: imageUrl
       })
     );
 

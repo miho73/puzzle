@@ -3,13 +3,13 @@ import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 interface PuzzleState {
   horizontalPieces?: number;
   verticalPieces?: number;
-  imageData?: ArrayBuffer | null;
+  imageUrl?: string;
 }
 
 const initialState: PuzzleState = {
-  horizontalPieces: 0,
-  verticalPieces: 0,
-  imageData: null
+  horizontalPieces: undefined,
+  verticalPieces: undefined,
+  imageUrl: undefined
 }
 
 export const puzzleSlice = createSlice({
@@ -17,16 +17,16 @@ export const puzzleSlice = createSlice({
   initialState: initialState,
   reducers: {
     reset: (state) => {
-      state.horizontalPieces = 0;
-      state.verticalPieces = 0;
-      state.imageData = null;
+      state.horizontalPieces = undefined;
+      state.verticalPieces = undefined;
+      state.imageUrl = undefined;
     },
     initializePuzzle: (state, action: PayloadAction<PuzzleState>) => {
-      const {horizontalPieces, verticalPieces, imageData} = action.payload;
+      const {horizontalPieces, verticalPieces, imageUrl} = action.payload;
 
       state.horizontalPieces = horizontalPieces;
       state.verticalPieces = verticalPieces;
-      state.imageData = imageData || null;
+      state.imageUrl = imageUrl;
     }
   }
 });

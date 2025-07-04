@@ -10,7 +10,6 @@ import StartPuzzle from "./Start.tsx";
 function JigsawSetup() {
   const [stage, setStage] = useState<number>(0);
 
-  const [image, setImage] = useState<ArrayBuffer | null>(null);
   const [imageWidth, setImageWidth] = useState<number>(0);
   const [imageHeight, setImageHeight] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string>('');
@@ -39,7 +38,6 @@ function JigsawSetup() {
       content = (
         <SetupSelectImage
           imageUrl={imageUrl}
-          setImage={setImage}
           setImageUrl={setImageUrl}
           setImageWidth={setImageWidth}
           setImageHeight={setImageHeight}
@@ -70,7 +68,7 @@ function JigsawSetup() {
         <StartPuzzle
           horizontalPieces={cols}
           verticalPieces={rows}
-          imageData={image}
+          imageUrl={imageUrl}
         />
       );
       break;
