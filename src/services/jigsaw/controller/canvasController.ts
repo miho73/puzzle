@@ -10,6 +10,7 @@ import {
 import render from "../render.ts";
 import * as Var from "../globalVariables.ts";
 import {dx, dy, scale, setDx, setDy, setScale} from "../globalVariables.ts";
+import store from "../../redux/store.ts"
 
 const dpr = window.devicePixelRatio || 1;
 let trackingMouse = false;
@@ -39,11 +40,38 @@ function onMouseDown(
 ) {
   if(event.button !== 0) return;
 
+  const reduxStore = store.getState();
+  const translationToggle = reduxStore.config.translationToggle;
+  const selectionToggle = reduxStore.config.selectionToggle;
+
+  // if toggle mode is on and tracking mouse, mouse up and done
+  if(trackingMouse && translationToggle) {
+    reportMouseUp();
+
+    trackingMouse = false;
+    x0 = -1;
+    y0 = -1;
+    return;
+  }
+
   const x = event.clientX * dpr;
   const y = event.clientY * dpr;
-
   const pos = invTransformMatMul(x, y);
 
+  // if toggle mode is on and dragging selection, mouse up and done.
+  if(drawingRect && selectionToggle) {
+    completeSelection(
+      x0, y0,
+      pos[0], pos[1],
+    );
+
+    drawingRect = false;
+    x0 = -1;
+    y0 = -1;
+    return;
+  }
+
+  // otherwise, check if click is about piece or not
   const current = reportMouseSelection(x, y);
   if(current === 1) {
     trackingMouse = true;
@@ -93,7 +121,10 @@ function onMouseMove(
 function onMouseUp(
   event: MouseEvent,
 ) {
-  if(drawingRect) {
+  const reduxState = store.getState();
+
+  const selectionToggle = reduxState.config.selectionToggle;
+  if(drawingRect && !selectionToggle) {
     const x = event.clientX * dpr;
     const y = event.clientY * dpr;
 
@@ -102,24 +133,57 @@ function onMouseUp(
     completeSelection(
       x0, y0,
       pos[0], pos[1],
-    )
-  }
-  if(trackingMouse) {
-    reportMouseUp();
+    );
+
+    drawingRect = false;
+    x0 = -1;
+    y0 = -1;
   }
 
-  trackingMouse = false;
-  drawingRect = false;
-  x0 = -1;
-  y0 = -1;
+  const translationToggle = reduxState.config.translationToggle;
+  if(trackingMouse && !translationToggle) {
+    reportMouseUp();
+
+    trackingMouse = false;
+    x0 = -1;
+    y0 = -1;
+  }
 }
 
 function onTouchStart(
   event: TouchEvent,
 ) {
+  const reduxStore = store.getState();
+  const translationToggle = reduxStore.config.translationToggle;
+  const selectionToggle = reduxStore.config.selectionToggle;
+
+  // if toggle mode is on and tracking mouse, mouse up and done
+  if(trackingMouse && translationToggle) {
+    reportMouseUp();
+
+    trackingMouse = false;
+    x0 = -1;
+    y0 = -1;
+    return;
+  }
+
   const x = event.touches[0].clientX * dpr;
   const y = event.touches[0].clientY * dpr;
   const pos = invTransformMatMul(x, y);
+
+  // if toggle mode is on and dragging selection, mouse up and done.
+  if(drawingRect && selectionToggle) {
+    completeSelection(
+      x0, y0,
+      pos[0], pos[1],
+    );
+
+    drawingRect = false;
+    x0 = -1;
+    y0 = -1;
+    return;
+  }
+
 
   const current = reportMouseSelection(pos[0], pos[1]);
 
@@ -169,7 +233,11 @@ function onTouchMove(
 function onTouchEnd(
   event: TouchEvent,
 ) {
-  if(drawingRect) {
+  const reduxStore = store.getState();
+  const translationToggle = reduxStore.config.translationToggle;
+  const selectionToggle = reduxStore.config.selectionToggle;
+
+  if(drawingRect && !selectionToggle) {
     const x = event.changedTouches[0].clientX * dpr;
     const y = event.changedTouches[0].clientY * dpr;
     const pos = invTransformMatMul(x, y);
@@ -177,16 +245,19 @@ function onTouchEnd(
     completeSelection(
       x0, y0,
       pos[0], pos[1],
-    )
-  }
-  if(trackingMouse) {
-    reportMouseUp();
-  }
+    );
 
-  trackingMouse = false;
-  drawingRect = false;
-  x0 = -1;
-  y0 = -1;
+    x0 = -1;
+    y0 = -1;
+    drawingRect = false;
+  }
+  if(trackingMouse && !translationToggle) {
+    reportMouseUp();
+
+    x0 = -1;
+    y0 = -1;
+    trackingMouse = false;
+  }
 }
 
 function onWheel(

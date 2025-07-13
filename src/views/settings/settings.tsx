@@ -4,6 +4,8 @@ import {RoyalG39} from "../../assets/royal/Svg.tsx";
 import {type ReactElement, useState} from "react";
 import Credit from "./credit.tsx";
 import {Link} from "react-router-dom";
+import Controls from "./controls.tsx";
+import Generals from "./generals.tsx";
 
 function Settings() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -23,10 +25,10 @@ function Settings() {
   let currentTab: ReactElement;
   switch (selectedTab) {
     case 0:
-      currentTab = <p>Generals</p>;
+      currentTab = <Generals/>;
       break;
     case 1:
-      currentTab = <p>Controls</p>;
+      currentTab = <Controls/>;
       break;
     case 2:
       currentTab = <Credit/>;
@@ -59,17 +61,17 @@ function Settings() {
           <button
             className={'border-none px-[5px] py-1'}
             onClick={() => changeTab(0)}
-            aria-label={selectedTab === 0 ? 'selected tab' : 'click to select this tab'}
+            aria-label={selectedTab === 0 ? 'selected tab' : 'click to select general tab'}
           >Generals</button>
           <button
             className={'border-none px-[5px] py-1'}
             onClick={() => changeTab(1)}
-            aria-label={selectedTab === 1 ? 'selected tab' : 'click to select this tab'}
+            aria-label={selectedTab === 1 ? 'selected tab' : 'click to select controls tab'}
           >Controls</button>
           <button
             className={'border-none px-[5px] py-1'}
             onClick={() => changeTab(2)}
-            aria-label={selectedTab === 2 ? 'selected tab' : 'click to select this tab'}
+            aria-label={selectedTab === 2 ? 'selected tab' : 'click to select credits tab'}
           >Credits</button>
         </Stack>
 

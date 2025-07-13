@@ -1,4 +1,4 @@
-import type {ReactElement, ReactNode} from "react";
+import {type ReactElement, type ReactNode} from "react";
 import {Link} from "react-router-dom";
 import {Stack} from "./layout.tsx";
 
@@ -87,8 +87,43 @@ function IconButton(
   );
 }
 
+function SelectionRotationSwitch(
+  {
+    options,
+    selected,
+    setter,
+    className
+  }: {
+    options: string[];
+    selected: number;
+    setter?: (selectedIdx: number) => void;
+    className?: string;
+  }
+) {
+  function onClick() {
+    let newIndex = selected + 1;
+
+    if(options.length == newIndex) newIndex = 0;
+
+    if(!setter) return;
+    setter(newIndex);
+  }
+
+  return (
+    <button
+      onClick={onClick}
+      className={
+        (className ? ' ' + className : '')
+      }
+    >
+      {options[selected]}
+    </button>
+  );
+}
+
 export {
   EmeraldButton,
   EmeraldLink,
-  IconButton
+  IconButton,
+  SelectionRotationSwitch
 }

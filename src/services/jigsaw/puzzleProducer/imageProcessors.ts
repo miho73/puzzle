@@ -15,7 +15,6 @@ async function loadImage(
   h: number,
   scaleRatio: number = 0.7
 ): Promise<ImageData> {
-  console.log(imageUrl);
   if(!imageUrl) {
     throw new Error('No image data provided');
   }

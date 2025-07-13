@@ -23,6 +23,12 @@ function Jigsaw() {
 
   // Overall initialization
   useEffect(() => {
+    // check redux initialization
+    if (!rows || !cols || rows <= 0 || cols <= 0 || !imageUrl) {
+      console.error('Puzzle is not initialized properly');
+      return;
+    }
+
     // canvas initialization
     const canvas = canvasRef.current;
     if (!canvas) return;
