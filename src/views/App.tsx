@@ -7,7 +7,7 @@ import Settings from "./settings/settings.tsx";
 function App() {
   return (
     <BrowserRouter>
-      <main className={'h-screen w-screen bg-[url(/puzzle/src/assets/wood_dark.jpg)] bg-auto bg-center'}>
+      <main className={'h-screen w-screen bg-[url(/puzzle/wood_dark.jpg)] bg-auto bg-center'}>
         <Routes>
           <Route path={'/puzzle'}>
             <Route path={'/puzzle'} element={<Index/>}/>
