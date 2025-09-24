@@ -11,7 +11,7 @@ function Index() {
 
         <Stack className={'gap-3 mt-3'}>
           <EmeraldLink
-            to={'/puzzle/setup'}
+            to={'/puzzle/puzzle/setup'}
             className={'text-lg'}
           >
             퍼즐 플레이
@@ -24,7 +24,7 @@ function Index() {
           </EmeraldButton>
 
           <EmeraldLink
-            to={'/settings'}
+            to={'/puzzle/settings'}
             className={'text-lg'}
           >
             설정

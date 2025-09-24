@@ -92,7 +92,7 @@ function JigsawSetup() {
           className={'justify-between my-3 mx-auto w-5/6'}
         >
           {stage === 0 ?
-            <Link to={'/'}>&lt; Home</Link> :
+            <Link to={'/puzzle'}>&lt; Home</Link> :
             <button onClick={prevStage}>
               &lt; Prev
             </button>

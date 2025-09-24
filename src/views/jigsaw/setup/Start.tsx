@@ -30,7 +30,7 @@ function StartPuzzle(
       })
     );
 
-    navigate('/puzzle');
+    navigate('/puzzle/puzzle');
   }
 
   return (

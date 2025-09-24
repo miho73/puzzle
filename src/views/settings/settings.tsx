@@ -76,7 +76,7 @@ function Settings() {
         </Stack>
 
         <Link
-          to={'/'}
+          to={'/puzzle'}
           className={'text-center mx-auto block mt-5'}
           aria-label={'go back to the main menu'}
         >&lt; Return to Home</Link>

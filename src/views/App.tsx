@@ -9,10 +9,12 @@ function App() {
     <BrowserRouter>
       <main className={'h-screen w-screen bg-[url(/src/assets/wood_dark.jpg)] bg-auto bg-center'}>
         <Routes>
-          <Route path={'/'} element={<Index/>}/>
-          <Route path={'/settings'} element={<Settings/>}/>
-          <Route path={'/puzzle/setup'} element={<JigsawSetup/>}/>
-          <Route path={'/puzzle'} element={<Jigsaw/>}/>
+          <Route path={'/puzzle'}>
+            <Route path={'/puzzle'} element={<Index/>}/>
+            <Route path={'/puzzle/settings'} element={<Settings/>}/>
+            <Route path={'/puzzle/puzzle/setup'} element={<JigsawSetup/>}/>
+            <Route path={'/puzzle/puzzle'} element={<Jigsaw/>}/>
+          </Route>
         </Routes>
       </main>
     </BrowserRouter>
